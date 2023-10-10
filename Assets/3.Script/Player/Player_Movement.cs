@@ -34,8 +34,17 @@ public class Player_Movement : MonoBehaviour
 
         if(Input.GetButton("Jump") && IsGrounded())
         {
+           
             jumpSoundEffect.Play();
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+            is_D_jump = false;
+
+        }
+        else if (Input.GetButton("Jump") && !is_D_jump) //벽타기가 되버렸네?
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+            anim.SetInteger("state", 4);
+            is_D_jump = true;
         }
     }
 
