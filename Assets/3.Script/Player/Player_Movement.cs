@@ -20,6 +20,9 @@ public class Player_Movement : MonoBehaviour
     private enum MovementState { idle, run, jump, fall, D_jump, W_jump } //애니메이션
     private bool is_D_jump = false;
     [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource AtteckSoundEffect;
+    [SerializeField] private AudioSource D_jumpSoundEffect;
+
 
     void Start()
     {
@@ -114,17 +117,16 @@ public class Player_Movement : MonoBehaviour
 
             if(rayHit)//벽을 만나면
             {
-                Debug.Log("벽이다");
                 
                 if (Input.GetButton("Jump") && !is_D_jump) //더블점프
                 {
-                    Debug.Log("더블점프다");
+                    D_jumpSoundEffect.Play();
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * 1.4f);
                     anim.SetInteger("state", 4);
                     
                     is_D_jump = true;
                 }
-                else
+                else//잡기
                 {
                     anim.SetInteger("state", 5);
                 }
@@ -139,16 +141,16 @@ public class Player_Movement : MonoBehaviour
             RaycastHit2D rayHit = Physics2D.Raycast(forntVec, Vector3.right, 0.7f, LayerMask.GetMask("Wall"));
             if (rayHit)//벽을 만나면
             {
-                Debug.Log("벽이다");
                 
                 if (Input.GetButton("Jump") && !is_D_jump) //더블점프
                 {
+                    D_jumpSoundEffect.Play();
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce*1.4f);
                     anim.SetInteger("state", 4);
                     is_D_jump = true;
 
                 }
-                else
+                else // 벽잡기
                 {
                     anim.SetInteger("state", 5);
                 }
@@ -172,6 +174,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            AtteckSoundEffect.Play();
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * 0.7f);
         }
     }
