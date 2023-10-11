@@ -7,6 +7,8 @@ TagManager:
   - Cherry
   - Trap
   - Enemy
+  - Wall
+  - Jumping_Point
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Ground
   - Trap
   - Enemy
-  - 
+  - Wall
   - 
   - 
   - 

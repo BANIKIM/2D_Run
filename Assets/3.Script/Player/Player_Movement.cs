@@ -17,7 +17,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField]private float moveSpeed = 7f;
     [SerializeField]private float jumpForce = 14f;
 
-    private enum MovementState { idle, run, jump, fall, D_jump } //애니메이션
+    private enum MovementState { idle, run, jump, fall, D_jump, W_jump } //애니메이션
     private bool is_D_jump = false;
     [SerializeField] private AudioSource jumpSoundEffect;
 
@@ -39,20 +39,22 @@ public class Player_Movement : MonoBehaviour
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
             is_D_jump = false;
 
+            
         }
-        else if (Input.GetButton("Jump") && !is_D_jump) //벽타기가 되버렸네?
-        {
-            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-            anim.SetInteger("state", 4);
-            is_D_jump = true;
-        }
+        /* else if (Input.GetButton("Jump") && !is_D_jump) //벽타기가 되버렸네?
+         {
+             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+             anim.SetInteger("state", 4);
+             is_D_jump = true;
+         }*/
+        Walljump();
+
     }
 
     private void FixedUpdate()
     {
         dirX = Input.GetAxisRaw("Horizontal");
         rigid.velocity = new Vector2(dirX * moveSpeed, rigid.velocity.y);
-
         UpdateAnimat();
     }
 
@@ -96,6 +98,70 @@ public class Player_Movement : MonoBehaviour
     private bool IsGrounded() //2중 점프 체크
     {
        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpGround);
+    }
+
+    //20231011 추가 벽점프
+    private void Walljump()
+    {
+        if(dirX > 0)
+        {
+            Vector2 forntVec = new Vector2(rigid.position.x + dirX * 0.7f, rigid.position.y);
+            Debug.DrawRay(forntVec, Vector3.left, new Color(0, 0, 1));
+
+            RaycastHit2D rayHit = Physics2D.Raycast(forntVec, Vector3.left, 0.7f, LayerMask.GetMask("Wall"));
+
+            if(rayHit)//벽을 만나면
+            {
+                Debug.Log("벽이다");
+                
+                if (Input.GetButton("Jump") && !is_D_jump) //더블점프
+                {
+                    Debug.Log("더블점프다");
+                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * 1.4f);
+                    anim.SetInteger("state", 4);
+                    
+                    is_D_jump = true;
+                }
+                else
+                {
+                    anim.SetInteger("state", 5);
+                }
+                
+            }
+        }
+        else if(dirX < 0)
+        {
+            Vector2 forntVec = new Vector2(rigid.position.x + dirX * 0.7f, rigid.position.y);
+            Debug.DrawRay(forntVec, Vector3.right, new Color(0, 0, 1));
+
+            RaycastHit2D rayHit = Physics2D.Raycast(forntVec, Vector3.right, 0.7f, LayerMask.GetMask("Wall"));
+            if (rayHit)//벽을 만나면
+            {
+                Debug.Log("벽이다");
+                
+                if (Input.GetButton("Jump") && !is_D_jump) //더블점프
+                {
+                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce*1.4f);
+                    anim.SetInteger("state", 4);
+                    is_D_jump = true;
+
+                }
+                else
+                {
+                    anim.SetInteger("state", 5);
+                }
+                
+            }
+        }
+    }
+
+    //20231011 점프대
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Jumping_Point"))
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce*2f);
+        }
     }
 
 }

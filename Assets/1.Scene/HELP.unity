@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &96955971
 RectTransform:
   m_ObjectHideFlags: 0
@@ -681,7 +681,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uC774\uB3D9\uD0A4 - \uBC29\uD5A5\uD0A4, WASD\n\uC810\uD504\uD0A4 - \uC2A4\uD398\uC774\uC2A4\n\uBCBD\uD0C0\uAE30
-    - \uC2A4\uD398\uC774\uC2A4\uB97C \uB204\uB974\uACE0 \uBCBD\uC73C\uB85C \uC810\uD504"
+    - \uBCBD\uC73C\uB85C \uC810\uD504 \n\uBCBD\uC810\uD504 - \uBCBD\uD0C0\uAE30 \uC911
+    \uBC29\uD5A5\uD0A4\uC640 \uC810\uD504\uD0A4 "
 --- !u!222 &1450820865
 CanvasRenderer:
   m_ObjectHideFlags: 0
