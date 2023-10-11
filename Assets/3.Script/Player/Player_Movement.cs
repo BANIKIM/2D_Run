@@ -41,6 +41,8 @@ public class Player_Movement : MonoBehaviour
 
             
         }
+
+  
         /* else if (Input.GetButton("Jump") && !is_D_jump) //벽타기가 되버렸네?
          {
              rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
@@ -155,12 +157,22 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-    //20231011 점프대
+    //20231011 점프대만나면 점프
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Jumping_Point"))
         {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce*2f);
+        }
+
+      
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)//적을 밟을 때 
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * 0.7f);
         }
     }
 

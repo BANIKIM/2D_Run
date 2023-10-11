@@ -19,7 +19,7 @@ public class Player_Life : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Trap"))
         {
-            
+            Debug.Log("Àû´êÀ½");
             Die();
         }
     }

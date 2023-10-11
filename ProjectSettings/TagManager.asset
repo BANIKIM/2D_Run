@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Wall
   - Jumping_Point
+  - Player_A
   layers:
   - Default
   - TransparentFX
