@@ -10,6 +10,9 @@ public class Trap_Code : MonoBehaviour
 
     private Rigidbody2D rigid;
     private Animator anim;
+    //[SerializeField] private AudioSource SoundEffect;
+
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -19,7 +22,7 @@ public class Trap_Code : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("플레이어가 들어옴");
+            //SoundEffect.Play();
             anim.SetTrigger("isPlayer");
             rigid.bodyType = RigidbodyType2D.Dynamic;
 

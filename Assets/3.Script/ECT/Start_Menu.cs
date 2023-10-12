@@ -7,7 +7,8 @@ public class Start_Menu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerPrefs.SetInt("Sro", 0);
+        SceneManager.LoadScene(1);
     }
 
     public void Go_Menu()

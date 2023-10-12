@@ -11,7 +11,6 @@ public class Sound_E : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tile"))
         {
-            Debug.Log("¶¥¹ÚÈû");
             SoundEffect.Play();
         }
     }
