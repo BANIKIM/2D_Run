@@ -5,20 +5,20 @@ using UnityEngine;
 public class Jumping_Point : MonoBehaviour
 {
     private Animator anim;
-    [SerializeField]private Player_Movement player;
+    [SerializeField]private AudioSource SoundEffect;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        player = GetComponent<Player_Movement>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)// 닿았을 때 애니메이션 재생
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("닿음 플레이어");
-            anim.SetTrigger("isPlayer");        }
+            SoundEffect.Play();//사운드 재생
+            anim.SetTrigger("isPlayer");        
+        }
     }
 
 }
