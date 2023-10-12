@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//스파이크 타일 플랫폼 코드
 
 public class Trap_Code : MonoBehaviour
 {
+
+
     private Rigidbody2D rigid;
     private Animator anim;
     private void Start()
@@ -21,5 +24,8 @@ public class Trap_Code : MonoBehaviour
             rigid.bodyType = RigidbodyType2D.Dynamic;
 
         }
+     
+
     }
+    
 }

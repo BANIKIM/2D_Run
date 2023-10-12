@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1696966835756213827}
   - component: {fileID: 1696966835756213826}
   - component: {fileID: 1696966835756213825}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Jump_Point
-  m_TagString: Untagged
+  m_TagString: Jumping
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 3847255447987129969}
   - component: {fileID: 3847255447987129971}
   - component: {fileID: 3847255447987129972}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Jump
   m_TagString: Jumping_Point
   m_Icon: {fileID: 0}
